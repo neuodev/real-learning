@@ -166,7 +166,7 @@ def test_model(test_dir,root_path, testX, testY, src_tokenizer, tar_tokenizer):
 instance_path = './instance/datasets'
 DATASET_FILE = os.path.join(instance_path, 'ara.txt')
 CLEANED_FILE = os.path.join(instance_path, 'cleaned.npz')
-n_sentences = 20000
+n_sentences = 10000
 
 if not os.path.exists(DATASET_FILE):
     print(f"'{DATASET_FILE}' doesn't exist.")
