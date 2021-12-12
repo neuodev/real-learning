@@ -71,7 +71,8 @@ def save_pairs(pairs, file):
 def load_cleaned_dataset(file, n_samples):
     raw_data = np.load(file)['arr_0']
     print("Dataset: ", raw_data.shape)
-
+    if not n_samples:
+        n_samples = len(raw_data)
     dataset = raw_data[:n_samples, :]
     np.random.shuffle(dataset)
     train_size = int(n_samples * 0.9)
@@ -165,7 +166,7 @@ def test_model(test_dir,root_path, testX, testY, src_tokenizer, tar_tokenizer):
 instance_path = './instance/datasets'
 DATASET_FILE = os.path.join(instance_path, 'ara.txt')
 CLEANED_FILE = os.path.join(instance_path, 'cleaned.npz')
-n_sentences = 10000
+n_sentences = None
 
 if not os.path.exists(DATASET_FILE):
     print(f"'{DATASET_FILE}' doesn't exist.")
