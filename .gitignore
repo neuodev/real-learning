@@ -25,3 +25,9 @@ htmlcov/
 .coverage.*
 *,cover
 __pycache__
+datasets
+sample.txt
+*.npz
+history-*.png
+*.h5
+*.txt

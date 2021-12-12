@@ -1,5 +1,7 @@
 import os
+import click
 from flask import Flask
+from .ara_eng.train_lstm import train_lstm
 
 
 def create_app(test_config=None):
@@ -26,5 +28,16 @@ def create_app(test_config=None):
     @app.route('/ping')
     def ping():
         return 'Pong!'
+
+    # CLI
+    @app.cli.command('nmt_lstm')
+    @click.option('--summary', default=False)
+    @click.option('--sample', default=False)
+    @click.option('--train', default=False)
+    @click.option('--epochs', default=10)
+    @click.option('--save', default='local', help='local|replace')
+    @click.option('--test', default=False, help='Test a model on the test data')
+    def _train_lstm(summary, sample, train, epochs, save, test):
+      train_lstm(summary, sample, train, epochs, save, test, app.instance_path, app.root_path)
 
     return app
